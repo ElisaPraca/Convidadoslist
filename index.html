@@ -3,69 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciador de Convidados</title>
+    <title>White Party - Lista de Convidados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>📋 CONVIDADOS WHITE PARTY</h1>
-        </header>
-
-        <section class="form-section">
-            <h2>Adicionar Novo Convidado</h2>
-            <form id="addGuestForm">
+        <h1 class="neon-title">White Party</h1>
+        
+        <div class="form-section">
+            <h2>Adicionar Convidado</h2>
+            <form id="guestForm">
                 <div class="form-group">
-                    <label for="guestName">Nome do Convidado *</label>
-                    <input type="text" id="guestName" name="Convidados" required placeholder="Digite o nome completo">
+                    <label for="guestName">Nome do Convidado</label>
+                    <input type="text" id="guestName" name="guestName" placeholder="Digite o nome" required>
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="guestStatus">Status *</label>
-                    <select id="guestStatus" name="Status" required>
-                        <option value="">Selecione o status</option>
+                    <label for="guestStatus">Status</label>
+                    <select id="guestStatus" name="guestStatus" required>
                         <option value="Pendente">Pendente</option>
                         <option value="Confirmado">Confirmado</option>
                         <option value="Cancelado">Cancelado</option>
                     </select>
                 </div>
-
-                <button type="submit" class="btn btn-primary" id="submitBtn">
-                    <span class="btn-text">Adicionar Convidado</span>
-                    <span class="btn-loading" style="display: none;">Salvando...</span>
-                </button>
+                
+                <button type="submit" class="btn btn-primary">Adicionar Convidado</button>
             </form>
-        </section>
-
-        <section class="list-section">
+        </div>
+        
+        <div class="message-box" id="messageBox"></div>
+        
+        <div class="guests-section">
             <h2>Lista de Convidados</h2>
-            <div id="loadingIndicator" class="loading-indicator">
-                <div class="spinner"></div>
-                <p>Carregando convidados...</p>
+            <div class="loading" id="loading">Carregando...</div>
+            <div class="table-container">
+                <table id="guestsTable">
+                    <thead>
+                        <tr>
+                            <th>Convidado</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guestsTableBody">
+                    </tbody>
+                </table>
             </div>
-            <div id="errorMessage" class="error-message" style="display: none;"></div>
-            <div id="guestList" class="guest-list"></div>
-        </section>
-    </div>
-
-    <div id="toast" class="toast"></div>
-
-    <div id="photoModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h3>Atualizar Foto</h3>
-            <input type="file" id="modalPhotoInput" accept="image/*">
-            <div id="modalPhotoPreview" class="photo-preview"></div>
-            <div class="modal-actions">
-                <button class="btn btn-secondary" id="modalCancelBtn">Cancelar</button>
-                <button class="btn btn-primary" id="modalSaveBtn">
-
-                    <span class="btn-loading" style="display: none;">Salvando...</span>
-                </button>
+            <div class="empty-state" id="emptyState">
+                Nenhum convidado na lista ainda. Adicione o primeiro!
             </div>
         </div>
     </div>
-
+    
     <script src="app.js"></script>
 </body>
 </html>
